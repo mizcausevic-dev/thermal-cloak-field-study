@@ -6,6 +6,7 @@ A complete 34.000-second interactive field study of a planar thermal-conduction 
 
 ## Open or run
 
+- **[Open the live study](https://mizcausevic-dev.github.io/thermal-cloak-field-study/).** Published with GitHub Pages.
 - Open the supplied `thermal-cloak.html` for the self-contained experience. All scripts, styles, fonts, and favicon are embedded. Modern browser JavaScript is required. If your file viewer restricts active HTML, download it and open it in a browser.
 - Upload the contents of `dist/` to any static host. Serve with HTTP(S); no server functions are required.
 - For development, use Node.js 22.12+ or 24 and npm:
@@ -17,7 +18,7 @@ npm run dev
 
 Open the URL Vite prints. Run `npm test`, `npm run build`, or `npm run package:html`. The last command creates `standalone/thermal-cloak.html` as well as `dist/`.
 
-Repository: https://github.com/mizcausevic-dev/thermal-cloak-field-study. See [DEPLOY.md](DEPLOY.md) for the GitHub Pages deployment workflow and [VALIDATION.md](VALIDATION.md) for verification status. Source publication has been approved; deployment and public browser checks are recorded separately.
+Repository: https://github.com/mizcausevic-dev/thermal-cloak-field-study. See [DEPLOY.md](DEPLOY.md) for the GitHub Pages deployment workflow and [VALIDATION.md](VALIDATION.md) for verification status. Deployment succeeded and the public files match the tested build. Public-page browser automation timed out; native WebGL rendering still needs a smoke test.
 
 ## The five shots
 

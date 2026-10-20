@@ -1,66 +1,35 @@
 # Publication
 
-## Current state
+## Current deployment
 
-Approved target: public repository `mizcausevic-dev/thermal-cloak-field-study`, branch `main`, with GitHub Pages built by `.github/workflows/pages.yml`.
+- Live study: https://mizcausevic-dev.github.io/thermal-cloak-field-study/
+- Public source: https://github.com/mizcausevic-dev/thermal-cloak-field-study
+- Branch: `main`
+- Pages source: **GitHub Actions**, using `.github/workflows/pages.yml`
+- Initial successful deployment: [run 39467954148, attempt 2](https://github.com/mizcausevic-dev/thermal-cloak-field-study/actions/runs/39467954148)
 
-Repository: https://github.com/mizcausevic-dev/thermal-cloak-field-study
+The original repository README/license commit was preserved as the parent of the source upload. Normal fast-forward updates were used. The repository has an MIT license, description, live homepage, five topics, Dependabot alerts/security updates, and scheduled npm/GitHub Actions version updates. The active **Protect main** ruleset blocks force pushes and branch deletion with no bypass actors.
 
-The repository was already initialized with a README and MIT license before this source upload. Its initial commit is retained as the parent. The complete source is uploaded as a normal fast-forward update; no force push is used. User approval covers source publication, Pages, Dependabot, topics, and protection against branch deletion/force pushes.
+The public HTML and its JavaScript, stylesheet, favicon, and bundled fonts returned HTTP 200 and matched the tested production build. Public-page browser automation did not complete. See [VALIDATION.md](VALIDATION.md) for the checks and remaining rendering limits.
 
-Deployment success and live-browser results are recorded separately in `VALIDATION.md`. A build passing by itself does not establish public availability. The product does not need API keys or runtime services.
+## Update the existing site
 
-## Existing repository
+Use Node.js 22.12+ or 24. Clone the existing repository, make changes, and run:
 
-Identify the exact repository and target branch first. Inspect its files and Pages configuration. Merge the source and workflow in an isolated branch, preserve unrelated work, run the tests and build, and review the exact patch before any approved push. Do not copy this project over an unrelated repository. Never force-push.
-
-## Reproducing publication from your Windows machine
-
-The following creation sequence is retained for a fresh repository or fork. Do not rerun repository creation against the existing repository. Run these commands only after approving the exact target and extracting the package. Open PowerShell **inside the extracted `thermal-cloak-field-study` directory**. Node/npm, Git, SSH access to GitHub, and your authenticated `gh` are required.
-
-```powershell
+```sh
 npm ci
 npm test
 npm run build
-git init -b main
-git add .
-git commit -m "Build interactive thermal cloak field study"
-gh repo create mizcausevic-dev/thermal-cloak-field-study --public --description "Interactive 34-second scientific schematic of a planar thermal-conduction cloak"
-git remote add origin git@github.com:mizcausevic-dev/thermal-cloak-field-study.git
-git push -u origin main
-gh repo edit mizcausevic-dev/thermal-cloak-field-study --add-topic threejs --add-topic thermal-conduction --add-topic scientific-visualization --add-topic typescript --add-topic vite
-gh api --method POST repos/mizcausevic-dev/thermal-cloak-field-study/pages -f build_type=workflow
-gh api --method PUT repos/mizcausevic-dev/thermal-cloak-field-study/vulnerability-alerts
 ```
 
-The MIT license, description, topics, and Dependabot configuration are included. To block force pushes and branch deletion on the main branch after the first push:
+Review and commit the intended changes, then push a normal fast-forward update or merge a pull request into `main`. The workflow tests and builds the source, uploads `dist/` with `upload-pages-artifact`, and deploys it with `deploy-pages`. It can also be started manually from Actions. Never force-push or recreate this repository to update the site.
 
-```powershell
-@'
-{
-  "required_status_checks": null,
-  "enforce_admins": true,
-  "required_pull_request_reviews": null,
-  "restrictions": null,
-  "allow_force_pushes": false,
-  "allow_deletions": false
-}
-'@ | gh api --method PUT repos/mizcausevic-dev/thermal-cloak-field-study/branches/main/protection --input -
-gh workflow run pages.yml --repo mizcausevic-dev/thermal-cloak-field-study
-gh run list --repo mizcausevic-dev/thermal-cloak-field-study --workflow pages.yml --limit 3
-```
+Wait for both the build and deploy jobs to succeed. Open the actual environment URL from the deployment. Check play/pause, seeking to 7.5/21/29/34 seconds, replay, mute, layers, keyboard focus, and mobile layout. Inspect native WebGL rendering in a capable browser. A successful build alone does not establish deployment or browser behavior.
 
-Use the actual run ID from the list:
-
-```powershell
-gh run watch RUN_ID --repo mizcausevic-dev/thermal-cloak-field-study
-gh api repos/mizcausevic-dev/thermal-cloak-field-study/pages --jq .html_url
-```
-
-Replace `RUN_ID` with that returned run's numeric ID; do not enter the word literally. Open the **returned** Pages URL. Check Play, scrub to 7.5/21/29/34 seconds, pause/resume, replay, mute, layers, keyboard focus, and mobile layout. A successful build is not proof of deployment; a successful deployment is not proof that the public page was browser-tested. If any command errors, resolve that error before claiming the corresponding step succeeded. If Pages already exists, inspect it instead of repeating the POST.
+The first deployment failed because Pages was not yet enabled. For a fork or new repository, select **Settings → Pages → Source → GitHub Actions** before deploying. Do not repeat repository or Pages creation against the existing project.
 
 ## Static upload alternative
 
-Upload every file **inside `dist/`** to the target site's document root, preserving `assets/`. The entry point is `index.html`. Relative Vite paths support a GitHub Pages project subpath. There are no remote scripts, runtime API services, or secrets. A standard HTTPS static server is sufficient.
+Upload every file **inside `dist/`** to the target site's document root, preserving `assets/`. The entry point is `index.html`. Relative Vite paths support a GitHub Pages project subpath. There are no remote scripts, runtime API services, accounts, or secrets. A standard HTTPS static server is sufficient.
 
-For a one-file handoff, upload or open `thermal-cloak.html`. Its dependencies and fonts are embedded. This is also useful for offline review.
+For a one-file handoff, run `npm run package:html` and open or upload `standalone/thermal-cloak.html`. Its scripts, styles, fonts, favicon, and license notices are embedded.

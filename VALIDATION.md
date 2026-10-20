@@ -36,10 +36,20 @@ Chrome cloud browser, desktop viewport approximately 1363 × 936 CSS pixels, plu
 
 **The test browser has WebGL disabled.** Three.js reported context-creation errors, caught by the application. Browser visual and interaction checks exercised the projected software renderer. Native Three.js/PBR rendering compiled successfully but could not be browser-rendered in this environment. It still needs a smoke test in a WebGL-capable desktop/mobile browser. No native-rendering success is claimed.
 
-No physical phone, Safari, assistive-technology session, offline network-disconnection session, or external public deployment was tested. Fullscreen and audio device behavior depend on the user's browser. Procedural audio generation/lifecycle were checked, but the soundtrack was not acoustically auditioned in this environment.
+No physical phone, Safari, assistive-technology session, or offline network-disconnection session was tested. Public deployment and HTTP checks are recorded below; the public-page browser check did not complete. Fullscreen and audio device behavior depend on the user's browser. Procedural audio generation/lifecycle were checked, but the soundtrack was not acoustically auditioned in this environment.
 
 These checks validate program behavior and local vector/contour consistency. They do **not** validate a heat-equation solution, energy balance, contact/interface continuity, mesh/timestep convergence, fabrication feasibility, or any experimental thermal-cloaking performance. Those claims are deliberately absent from the product.
 
 ## Publication status
 
-The user approved publication to the public `mizcausevic-dev/thermal-cloak-field-study` repository on `main`, GitHub Pages deployment, Dependabot, topics, and branch protection. The repository's initial README and MIT license were inspected before source upload. Local tests and production build passed again before the upload. Public deployment and browser verification are pending at this source-publication stage. See `DEPLOY.md`. Build success, deployment success, public availability, and public browser verification remain separate statuses.
+The user approved publication to the public [mizcausevic-dev/thermal-cloak-field-study](https://github.com/mizcausevic-dev/thermal-cloak-field-study) repository on `main`, GitHub Pages deployment, Dependabot, topics, and branch protection. The repository's initial README and MIT license were inspected and preserved before source upload. Local tests and production build passed again before the upload.
+
+- Source commit: `6c9d37a259f8fb774db2d5b0494533f7a87eacf1`, uploaded as a normal fast-forward update.
+- [Pages workflow run 39467954148](https://github.com/mizcausevic-dev/thermal-cloak-field-study/actions/runs/39467954148), attempt 2: **successful build and deployment**. The first deployment attempt failed because Pages was not yet enabled. Pages was configured for GitHub Actions and the failed job was rerun successfully.
+- Public URL: https://mizcausevic-dev.github.io/thermal-cloak-field-study/
+- HTTP checks: public `index.html`, JavaScript, stylesheet, favicon, and bundled font files returned **200** and matched the corresponding local production build byte for byte.
+- Repository description, homepage, five topics, and MIT licensing were verified. Dependabot alerts, security updates, grouped security updates, and version-update configuration are enabled.
+- Active ruleset [Protect main](https://github.com/mizcausevic-dev/thermal-cloak-field-study/rules/25492780) targets `refs/heads/main`, blocks deletion and non-fast-forward updates, and has no bypass actors. Rules were read back through the repository API; no destructive test was attempted.
+- Connected Chrome successfully displayed the published repository and its successful Pages deployment. Attempts to inspect the public app through browser automation timed out or lost tab-session ownership. No successful public-page browser interaction or native WebGL visual check is claimed.
+
+See `DEPLOY.md` for maintenance. Build success, deployment success, HTTP availability, and public browser verification are separate statuses.
