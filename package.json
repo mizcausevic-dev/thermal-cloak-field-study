@@ -13,7 +13,7 @@
   "dependencies": {
     "@fontsource/space-grotesk": "5.2.10",
     "@fontsource/ibm-plex-mono": "5.2.7",
-    "three": "0.180.0"
+    "three": "0.186.1"
   },
   "devDependencies": {
     "@types/three": "0.180.0",
