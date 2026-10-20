@@ -1,0 +1,24 @@
+{
+  "name": "thermal-cloak-field-study",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 4173",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "package:html": "npm run build && node scripts/standalone.mjs"
+  },
+  "dependencies": {
+    "@fontsource/space-grotesk": "5.2.10",
+    "@fontsource/ibm-plex-mono": "5.2.7",
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "@types/three": "0.180.0",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "vite": "7.1.12"
+  }
+}
